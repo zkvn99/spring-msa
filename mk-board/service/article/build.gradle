@@ -4,3 +4,8 @@ dependencies {
     runtimeOnly 'com.mysql:mysql-connector-j'
     implementation project(':common:snowflake')
 }
+
+// 추후 제거
+bootJar {
+    archiveFileName = 'article.jar'
+}
