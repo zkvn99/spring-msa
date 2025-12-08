@@ -1,0 +1,8 @@
+# OpenJDK 21이 설치된 Alpine Linux 이미지를 기반으로 한다.
+FROM eclipse-temurin:21-jdk-alpine
+
+WORKDIR /app
+COPY build/libs/*.jar app.jar
+
+# 컨테이너 시작 시 app.jar 파일을 실행하는 명령을 설정한다.
+ENTRYPOINT ["java", "-jar", "app.jar"]
