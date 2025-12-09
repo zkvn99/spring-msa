@@ -1,19 +1,48 @@
+//plugins {
+//    id 'org.springframework.boot'
+//    id 'io.spring.dependency-management'
+//    id 'java'
+//}
+//
+//dependencies {
+//    implementation 'org.springframework.boot:spring-boot-starter-web'
+//    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+//    runtimeOnly 'com.mysql:mysql-connector-j'
+//    implementation project(':common:snowflake')
+//}
+//
+//bootJar {
+//    enabled = true
+//}
+//jar {
+//    enabled = false
+//}
+
 plugins {
-    id 'org.springframework.boot'
-    id 'io.spring.dependency-management'
     id 'java'
+    id 'org.springframework.boot' version '3.3.2' apply false
+    id 'io.spring.dependency-management' version '1.1.6'
 }
 
-dependencies {
-    implementation 'org.springframework.boot:spring-boot-starter-web'
-    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-    runtimeOnly 'com.mysql:mysql-connector-j'
-    implementation project(':common:snowflake')
+group = 'minuk'
+version = '1'
+description = 'mk-board'
+
+allprojects {
+    repositories {
+        mavenCentral()
+    }
 }
 
-bootJar {
-    enabled = true
+subprojects {
+    apply plugin: 'java'
+    apply plugin: 'io.spring.dependency-management'
+
+    java {
+        sourceCompatibility = JavaVersion.VERSION_21
+        targetCompatibility = JavaVersion.VERSION_21
+    }
+
+    // ❗ 공통 모듈에는 Boot 의존성 절대 넣지 않는다!
 }
-jar {
-    enabled = false
-}
+
